@@ -1,0 +1,16 @@
+{
+    "machine": {
+        "ip-address": "10.5.5.1"
+        "responsibilities": [
+            "responsibility1",
+            "responsibility2"
+        ]
+    },
+    "machine": {
+        "ip-address": "10.5.5.1"
+        "responsibilities": [
+            "responsibility1",
+            "responsibility2"
+        ]
+    }
+}
