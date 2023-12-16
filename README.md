@@ -26,3 +26,4 @@ Uses the Greek Pantheon:
 ## Standards
 
 - Every service should log its actions
+- Every machine is set up in the `servers-config` file and given responsibilities from the `responsibilities.json` file.
