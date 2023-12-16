@@ -6,6 +6,7 @@
 export MYSQL_ROOT_PASSWORD="mysql_root_password"
 
 # WIREGUARD
+export WIREGUARD_PATH="/etc/wireguard"
 export WG_SERVER_PUBLIC_KEY="wg_server_public_key"
 export WG_ENDPOINT="endpoint"
 export WG_ALLOWED_IPS="0.0.0.0/0,::/0"
