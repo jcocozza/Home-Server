@@ -22,7 +22,7 @@ Uses the Greek Pantheon:
 
 ## Fun 
 - [minecraft](https://papermc.io/)
-
+- [minecraft-bedrock](https://www.minecraft.net/en-us/download/server/bedrock)
 ## Standards
 
 - Every service should log its actions

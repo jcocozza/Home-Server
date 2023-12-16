@@ -1,16 +1,16 @@
 {
-    "machine": {
+    "machine1": {
         "ip-address": "10.5.5.1"
         "responsibilities": [
             "responsibility1",
-            "responsibility2"
+            "wg-server"
         ]
     },
-    "machine": {
-        "ip-address": "10.5.5.1"
+    "machine2": {
+        "ip-address": "10.5.5.2"
         "responsibilities": [
             "responsibility1",
-            "responsibility2"
+            "wg-peer"
         ]
     }
 }

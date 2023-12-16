@@ -1,0 +1,11 @@
+{   
+    "responsibility-name": {
+        "description": "This is the description of the responsibility", 
+    }
+    "wg-server": {
+        "description": "Runs the wireguard server"
+    }
+    "wg-peer": {
+        "description": "Is a peer on the wireguard server"
+    }
+}
