@@ -1,16 +1,11 @@
 {
-    "machine1": {
-        "ip-address": "10.5.5.1"
+    "machine-template": {
+        "ip-address": "ip of the machine on its network",
+        "vpn-ip-address": "ip of machine on the vpn network",
         "responsibilities": [
             "responsibility1",
-            "wg-server"
-        ]
-    },
-    "machine2": {
-        "ip-address": "10.5.5.2"
-        "responsibilities": [
-            "responsibility1",
-            "wg-peer"
+            "responsibility2",
+            "responsibility3"
         ]
     }
 }

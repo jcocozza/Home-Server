@@ -16,14 +16,16 @@
 Uses the Greek Pantheon:
 - zeus
 - hades
+- athena
+- hephaestus
 
 ## Tools
 - [speedtest](https://www.speedtest.net/apps/cli)
 
-## Fun 
+## Fun
 - [minecraft](https://papermc.io/)
 - [minecraft-bedrock](https://www.minecraft.net/en-us/download/server/bedrock)
-## Standards
 
+## Standards
 - Every service should log its actions
 - Every machine is set up in the `servers-config` file and given responsibilities from the `responsibilities.json` file.

@@ -1,10 +1,10 @@
-{   
+{
     "responsibility-name-template": {
-        "description": "This is the description of the responsibility", 
+        "description": "This is the description of the responsibility"
     },
-    
+
     "wg-server": {
-        "description": "Runs the wireguard server"
+        "description": "Hosts a wireguard server"
     },
     "wg-peer": {
         "description": "Is a peer on the wireguard server"
@@ -12,12 +12,15 @@
     "wg-monitor": {
         "description": "Runs the wg-monitor program"
     },
-    
+
+    "speedtest": {
+        "description": "Runs a speedtest via the cli tool provided by https://www.speedtest.net/"
+    },
 
     "mysql-db": {
-        "description": "Runs a mysql database"
+        "description": "Hosts a mysql database"
     },
-    
+
 
     "hadoop-name-node": {
         "description": "Is a hadoop name-node"

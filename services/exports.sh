@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Variables that are exported to be used by other scripts 
+# Variables that are exported to be used by other scripts
 
 # MYSQL
 export MYSQL_ROOT_PASSWORD="mysql_root_password"
