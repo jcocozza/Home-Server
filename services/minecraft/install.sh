@@ -30,4 +30,3 @@ sed -i 's/eula=false/eula=true/' eula.txt
 
 # run server for real this time
 java -Xms2G -Xmx2G -jar paper.jar --nogui &
-
