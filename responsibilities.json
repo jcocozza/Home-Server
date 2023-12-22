@@ -30,7 +30,10 @@
     },
 
 
-    "minecraft": {
-        "description": "Runs a minecraft server"
+    "minecraft-java": {
+        "description": "Runs a java minecraft server"
+    },
+    "minecraft-bedrock": {
+        "description": "Runs a bedrock minecraft server"
     }
 }
