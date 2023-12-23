@@ -10,12 +10,14 @@
         "description": "Is a peer on the wireguard server"
     },
     "wg-monitor": {
-        "description": "Runs the wg-monitor program"
+        "description": "Runs the wg-monitor program: https://github.com/jcocozza/wg-monitor"
     },
 
+
     "speedtest": {
-        "description": "Runs a speedtest via the cli tool provided by https://www.speedtest.net/"
+        "description": "Runs a speedtest https://github.com/jcocozza/go_speedtest"
     },
+
 
     "mysql-db": {
         "description": "Hosts a mysql database"
