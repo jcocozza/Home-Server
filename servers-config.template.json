@@ -1,7 +1,13 @@
 {
-    "param1" : "p1",
-    "param2" : "p2",
-    "param3" : "p3",
+    "MYSQL_ROOT_PASSWORD" : "p1",
+
+    "WIREGUARD_PATH" : "p2",
+    "WG_SERVER_PUBLIC_KEY" : "p3",
+    "WG_ENDPOINT": "p4",
+    "WG_ALLOWED_IPS": "p5",
+    "WG_NAME": "p6",
+    "WG_LISTENPORT": "p7",
+
     "machines": [
         {
             "name": "machine-template",
