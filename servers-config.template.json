@@ -1,11 +1,17 @@
 {
-    "machine-template": {
-        "ip-address": "ip of the machine on its network",
-        "vpn-ip-address": "ip of machine on the vpn network",
-        "responsibilities": [
-            "responsibility1",
-            "responsibility2",
-            "responsibility3"
-        ]
-    }
+    "param1" : "p1",
+    "param2" : "p2",
+    "param3" : "p3",
+    "machines": [
+        {
+            "name": "machine-template",
+            "ip-address": "ip of the machine on its network",
+            "vpn-ip-address": "ip of machine on the vpn network",
+            "responsibilities": [
+                "responsibility1",
+                "responsibility2",
+                "responsibility3"
+            ]
+        }
+    ]
 }
