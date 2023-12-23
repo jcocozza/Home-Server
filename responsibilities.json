@@ -23,6 +23,9 @@
         "description": "Hosts a mysql database"
     },
 
+    "file-server": {
+        "description":"Runs a samba file server"
+    },
 
     "hadoop-name-node": {
         "description": "Is a hadoop name-node"
