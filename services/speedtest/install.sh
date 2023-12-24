@@ -2,11 +2,9 @@
 #
 # Install the speedtest tooling
 
-
 go_speedtest_version="v0.0.1-alpha"
 system="$(uname -s)"
 architecture="$(uname -m)"
-
 
 if [[ "$system" == "Darwin" ]]; then
     # Install ookla

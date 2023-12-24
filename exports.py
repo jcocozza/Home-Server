@@ -1,6 +1,8 @@
 import json
 
 exported_variables = [
+    "HOME_SERVER_DIR",
+
     "MYSQL_ROOT_PASSWORD",
 
     "WIREGUARD_PATH",

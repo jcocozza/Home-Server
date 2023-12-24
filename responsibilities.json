@@ -27,6 +27,10 @@
         "description":"Runs a samba file server"
     },
 
+    "budget": {
+        "description": "Runs the actual server for budgeting"
+    },
+
     "hadoop-name-node": {
         "description": "Is a hadoop name-node"
     },

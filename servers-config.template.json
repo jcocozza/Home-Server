@@ -1,4 +1,6 @@
 {
+    "HOME_SERVER_DIR" : "~/HOME-SERVER-SERVICES",
+
     "MYSQL_ROOT_PASSWORD" : "p1",
 
     "WIREGUARD_PATH" : "p2",
