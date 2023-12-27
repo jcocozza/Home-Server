@@ -11,3 +11,11 @@ export WG_ENDPOINT="endpoint"
 export WG_ALLOWED_IPS="0.0.0.0/0,::/0"
 export WG_NAME="wg0"
 export WG_LISTENPORT="51820"
+export BASE_USER="ubuntu"
+
+# Hadoop Parameters
+export HADOOP_USERNAME="hadoop"
+export HADOOP_USER_PASSWORD="hadoop"
+export HADOOP_VERSION="hadoop-3.3.6"
+export HADOOP_LOCATION="/opt/hadoop"
+export HADOOP_MASTER_IP="192.168.64.5"
