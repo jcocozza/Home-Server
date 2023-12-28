@@ -17,7 +17,10 @@ core_site="<configuration>
 </property>
 </configuration>"
 
-echo "$core_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/core-site.xml" > /dev/null
+#echo "$core_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/core-site.xml" > /dev/null
+echo "$core_site" >> "$HADOOP_LOCATION/etc/hadoop/core-site.xml"
+
+
 
 # hdfs-site.xml
 hdfs_site="<configuration>
@@ -33,8 +36,8 @@ hdfs_site="<configuration>
 </property>
 </configuration>"
 
-echo "$hdfs_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml" > /dev/null
-
+#echo "$hdfs_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml" > /dev/null
+echo "$hdfs_site" >> "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml"
 
 # workers
 shift # Remove the master node name from the list of arguments
@@ -55,4 +58,5 @@ yarn_site="<configuration>
 </property>
 </configuration>"
 
-echo "$yarn_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml" > /dev/null
+#echo "$yarn_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml" > /dev/null
+echo "$yarn_site" >> "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml"
