@@ -9,12 +9,13 @@
 # basic configuration
 
 # core-site.xml
-master_name="$1"
+master_ip="$1"
 core_site="<?xml version=\"1.0\"?>
+<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>
 <configuration>
 <property>
 <name>fs.defaultFS</name>
-<value>hdfs://$master_name:9000</value>
+<value>hdfs://$master_ip:9000</value>
 </property>
 </configuration>"
 
@@ -23,17 +24,28 @@ echo "$core_site" > "$HADOOP_LOCATION/etc/hadoop/core-site.xml"
 
 # hdfs-site.xml
 hdfs_site="<?xml version=\"1.0\"?>
+<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>
 <configuration>
 <property>
-<name>dfs.namenode.name.dir</name><value>$HADOOP_LOCATION/data/nameNode</value>
+    <name>dfs.namenode.name.dir</name><value>$HADOOP_LOCATION/data/nameNode</value>
 </property>
 <property>
-<name>dfs.datanode.data.dir</name><value>$HADOOP_LOCATION/data/dataNode</value>
+    <name>dfs.datanode.data.dir</name><value>$HADOOP_LOCATION/data/dataNode</value>
 </property>
 <property>
-<name>dfs.replication</name>
-<value>2</value>
+    <name>dfs.replication</name>
+    <value>2</value>
 </property>
+
+<property>
+    <name>dfs.namenode.rpc-bind-host</name>
+    <value>$master_ip</value>
+</property>
+<property>
+    <name>dfs.namenode.servicerpc-bind-host</name>
+    <value>$master_ip</value>
+</property>
+
 </configuration>"
 
 #echo "$hdfs_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml" > /dev/null
@@ -43,8 +55,9 @@ echo "$hdfs_site" > "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml"
 shift # Remove the master node name from the list of arguments
 
 # Append slave nodes to a workers file
+echo "" > $HADOOP_LOCATION/etc/hadoop/workers
 for node in "$@"; do
-    if [[ "$node" != "localhost" ]]; then
+    if [[ "$node" != "$master_ip" ]]; then
         echo "$node" >> $HADOOP_LOCATION/etc/hadoop/workers
     fi
 done
@@ -56,8 +69,8 @@ done
 yarn_site="<?xml version=\"1.0\"?>
 <configuration>
 <property>
-<name>yarn.resourcemanager.hostname</name>
-<value>0.0.0.0</value>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>$master_ip</value>
 </property>
 </configuration>"
 
