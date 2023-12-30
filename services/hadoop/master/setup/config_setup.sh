@@ -10,7 +10,8 @@
 
 # core-site.xml
 master_name="$1"
-core_site="<configuration>
+core_site="<?xml version=\"1.0\"?>
+<configuration>
 <property>
 <name>fs.defaultFS</name>
 <value>hdfs://$master_name:9000</value>
@@ -18,12 +19,11 @@ core_site="<configuration>
 </configuration>"
 
 #echo "$core_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/core-site.xml" > /dev/null
-echo "$core_site" >> "$HADOOP_LOCATION/etc/hadoop/core-site.xml"
-
-
+echo "$core_site" > "$HADOOP_LOCATION/etc/hadoop/core-site.xml"
 
 # hdfs-site.xml
-hdfs_site="<configuration>
+hdfs_site="<?xml version=\"1.0\"?>
+<configuration>
 <property>
 <name>dfs.namenode.name.dir</name><value>$HADOOP_LOCATION/data/nameNode</value>
 </property>
@@ -37,26 +37,29 @@ hdfs_site="<configuration>
 </configuration>"
 
 #echo "$hdfs_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml" > /dev/null
-echo "$hdfs_site" >> "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml"
+echo "$hdfs_site" > "$HADOOP_LOCATION/etc/hadoop/hdfs-site.xml"
 
 # workers
 shift # Remove the master node name from the list of arguments
 
 # Append slave nodes to a workers file
 for node in "$@"; do
-    echo "$node" >> $HADOOP_LOCATION/etc/hadoop/workers
+    if [[ "$node" != "localhost" ]]; then
+        echo "$node" >> $HADOOP_LOCATION/etc/hadoop/workers
+    fi
 done
 
 #echo "Slave nodes appended to workers file."
 
 
 # yarn-site.xml
-yarn_site="<configuration>
+yarn_site="<?xml version=\"1.0\"?>
+<configuration>
 <property>
 <name>yarn.resourcemanager.hostname</name>
-<value>$master_name</value>
+<value>0.0.0.0</value>
 </property>
 </configuration>"
 
 #echo "$yarn_site" | sudo tee -a "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml" > /dev/null
-echo "$yarn_site" >> "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml"
+echo "$yarn_site" > "$HADOOP_LOCATION/etc/hadoop/yarn-site.xml"
