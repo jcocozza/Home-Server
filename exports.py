@@ -4,6 +4,7 @@ exported_variables = [
     "HOME_SERVER_DIR",
 
     "BASE_USER",
+    "BASE_USER_PASSWORD",
 
     "MYSQL_ROOT_PASSWORD",
 
@@ -52,6 +53,7 @@ def create_export_file(data: dict) -> None:
     master_node = master_node_lst[0]
 
     export_file_str = add_export(export_file_str,"HADOOP_MASTER_IP",master_node["ip-address"])
+    export_file_str = add_export(export_file_str,"HADOOP_MASTER_NAME",master_node["name"])
 
     file = open("exports.sh", "w")
     file.write(export_file_str)

@@ -45,7 +45,7 @@ done
 
 for ipaddr in "${machines[@]}"; do
     # append to hosts file on the remote machines
-    read -p "Press Enter to add hosts for $ipaddr"
+    echo "Adding hosts for $ipaddr"
     ssh -t "$HADOOP_USERNAME@$ipaddr" "echo '$hosts' | sudo tee -a /etc/hosts > /dev/null"
 done
 echo "########## Finished setting up passwordless ssh login to hadoop user ##########"
@@ -68,6 +68,12 @@ for ipaddr in "${machines[@]}"; do
     done
 done
 
+echo "Adding $HADOOP_MASTER_NAME to ssh config"
+config="Host $HADOOP_MASTER_NAME
+    HostName $HADOOP_MASTER_IP
+    IdentityFile $keyfile"
+ssh -t "$HADOOP_USERNAME@$HADOOP_MASTER_IP" "echo '$config' >> /home/$HADOOP_USERNAME/.ssh/config"
+
 # install hadoop
 echo "installing hadoop for master $HADOOP_MASTER_IP..."
 scp services/hadoop/local/install.sh "$HADOOP_USERNAME@$HADOOP_MASTER_IP:/tmp/"
@@ -78,7 +84,7 @@ ssh -t "$HADOOP_USERNAME@$HADOOP_MASTER_IP" '
         bash -s < /tmp/install.sh;
         sudo mv hadoop '"$HADOOP_LOCATION"';
     '
-
+expecter
 echo "Sending $HADOOP_VERSION.tar.gz to other machines"
 for ipaddr in "${machines[@]}"; do
     if [[ "$ipaddr" != "$HADOOP_MASTER_IP" ]]; then
@@ -94,6 +100,7 @@ for ipaddr in "${machines[@]}"; do
             mv '"$HADOOP_VERSION"' hadoop;
             sudo mv hadoop '"$HADOOP_LOCATION"'
         '
+        expecter
     fi
 done
 
@@ -105,14 +112,14 @@ echo "Setting up config for master $HADOOP_MASTER_IP..."
 scp services/hadoop/master/setup/config_setup.sh "$HADOOP_USERNAME@$HADOOP_MASTER_IP:/tmp/"
 ssh "$HADOOP_USERNAME@$HADOOP_MASTER_IP" "source exports.sh; chmod +x /tmp/config_setup.sh; /tmp/config_setup.sh $HADOOP_MASTER_IP ${machines[@]}"
 
-read -p "Press Enter to distribute configuration to ${machines[*]}"
+echo "Distributing configuration to ${machines[*]}..."
 
 #scp services/hadoop/master/setup/distribute_configuration.sh "$HADOOP_USERNAME@$HADOOP_MASTER_IP:/tmp/"
 for node in "${machines[@]}"; do
     ssh "$HADOOP_USERNAME@$HADOOP_MASTER_IP" "source exports.sh; scp -r -i ~/.ssh/hadoop $HADOOP_LOCATION/etc/hadoop/* $node:$HADOOP_LOCATION/etc/hadoop/"
 done
 
-read -p Press Enter to set hadoop permissions
+echo "Setting hadoop permissions"
 for ipaddr in "${machines[@]}"; do
     ssh -t "$HADOOP_USERNAME@$ipaddr" '
         sudo chown '"$HADOOP_USERNAME"':root -R '"$HADOOP_LOCATION"';
@@ -120,7 +127,6 @@ for ipaddr in "${machines[@]}"; do
     '
 done
 
-echo "########## Finished Hadoop Setup ##########"
-
-read -p "Press Enter to format hdfs"
+echo "formatting hdfs..."
 ssh "$HADOOP_USERNAME@$HADOOP_MASTER_IP" "source exports.sh; bash -s" < "services/hadoop/master/setup/format.sh"
+echo "########## Finished Hadoop Setup ##########"

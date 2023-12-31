@@ -7,10 +7,6 @@
 #   HADOOP_USER_PASSWORD
 #   HADOOP_LOCATION
 
-echo $HADOOP_USERNAME
-
-
-
 sudo useradd -m -s /bin/bash $HADOOP_USERNAME
 echo "$HADOOP_USERNAME:$HADOOP_USER_PASSWORD" | sudo chpasswd
 
