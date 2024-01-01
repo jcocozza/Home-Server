@@ -52,8 +52,8 @@ def create_export_file(data: dict) -> None:
     # there is only 1 master node so it will be a list of length 1
     master_node = master_node_lst[0]
 
-    export_file_str = add_export(export_file_str,"HADOOP_MASTER_IP",master_node["ip-address"])
-    export_file_str = add_export(export_file_str,"HADOOP_MASTER_NAME",master_node["name"])
+    export_file_str = add_export(export_file_str,"HADOOP_MASTER_IP",master_node["ip-address"]) + " # Auto-generated"
+    export_file_str = add_export(export_file_str,"HADOOP_MASTER_NAME",master_node["name"]) + " # Auto-generated"
 
     file = open("exports.sh", "w")
     file.write(export_file_str)
