@@ -84,7 +84,6 @@ ssh -t "$HADOOP_USERNAME@$HADOOP_MASTER_IP" '
         bash -s < /tmp/install.sh;
         sudo mv hadoop '"$HADOOP_LOCATION"';
     '
-expecter
 echo "Sending $HADOOP_VERSION.tar.gz to other machines"
 for ipaddr in "${machines[@]}"; do
     if [[ "$ipaddr" != "$HADOOP_MASTER_IP" ]]; then
@@ -100,7 +99,6 @@ for ipaddr in "${machines[@]}"; do
             mv '"$HADOOP_VERSION"' hadoop;
             sudo mv hadoop '"$HADOOP_LOCATION"'
         '
-        expecter
     fi
 done
 
