@@ -5,6 +5,7 @@
 samba_conf="/etc/samba/smb.conf"
 fileserver_dir="/home/sharing"
 
+sudo apt update;
 sudo apt install -y samba
 
 sudo mkdir -p "$fileserver_dir"
