@@ -6,14 +6,7 @@ exported_variables = [
     "BASE_USER",
     "BASE_USER_PASSWORD",
 
-    "MYSQL_ROOT_PASSWORD",
-
-    "WIREGUARD_PATH",
-    "WG_SERVER_PUBLIC_KEY",
-    "WG_ENDPOINT",
-    "WG_ALLOWED_IPS",
-    "WG_NAME",
-    "WG_LISTENPORT",
+    "MYSQL_ROOT_PASSWORD"
 ]
 
 def read_server_config() -> dict:
@@ -49,11 +42,24 @@ def create_export_file(data: dict) -> None:
         export_file_str = add_export(export_file_str, str(key), str(value))
 
     master_node_lst = [machine for machine in data['machines'] if 'hadoop-name-node' in machine['responsibilities']]
-    # there is only 1 master node so it will be a list of length 1
-    master_node = master_node_lst[0]
-
+    master_node = master_node_lst[0] # there is only 1 master node so it will be a list of length 1
     export_file_str = add_export(export_file_str,"HADOOP_MASTER_IP",master_node["ip-address"]) + " # Auto-generated"
     export_file_str = add_export(export_file_str,"HADOOP_MASTER_NAME",master_node["name"]) + " # Auto-generated"
+
+    export_file_str += "\n\n# Wireguard Parameters"
+    for key,value in data["WIREGUARD_PARAMS"].items():
+        export_file_str = add_export(export_file_str, str(key), str(value))
+
+    wg_server_lst = [machine for machine in data['machines'] if 'wg-server' in machine['responsibilities']]
+    wg_server = wg_server_lst[0] # there is only 1 wg_server
+
+    wg_monitor_lst = [machine for machine in data['machines'] if 'wg-monitor' in machine['responsibilities']]
+    wg_monitor = wg_monitor_lst[0] # there is only 1 wg_monitor
+
+    export_file_str = add_export(export_file_str,"WG_SERVER_IP",wg_server["ip-address"]) + " # Auto-generated"
+    export_file_str = add_export(export_file_str,"WG_SERVER_VPN_IP",wg_server["vpn-ip-address"]) + " # Auto-generated"
+    export_file_str = add_export(export_file_str,"WG_MONITOR_IP",wg_monitor["ip-address"]) + " # Auto-generated"
+
 
     file = open("exports.sh", "w")
     file.write(export_file_str)

@@ -10,6 +10,7 @@
 #   WG_ENDPOINT
 
 ASSIGNED_ADDRESS=$1
+server_public_key=$2
 PRIVATE_KEY_PATH="$WIREGUARD_PATH/private.key"
 PUBLIC_KEY_PATH="$WIREGUARD_PATH/public.key"
 
@@ -23,12 +24,18 @@ sudo cat $PRIVATE_KEY_PATH | wg pubkey | sudo tee $PUBLIC_KEY_PATH
 # create the config file
 CONF_PATH="$WIREGUARD_PATH/$WG_NAME.conf"
 
-echo "[INTERFACE]" > $CONF_PATH
-echo "PrivateKey = ${sudo cat $PRIVATE_KEY_PATH}" > $CONF_PATH
-echo "Address = $ASSIGNED_ADDRESS" > $CONF_PATH
+interface="[Interface]
+PrivateKey = $(sudo cat $PRIVATE_KEY_PATH)
+Address = $ASSIGNED_ADDRESS/32"
 
-echo "[Peer]"
-echo "PublicKey = $WG_SERVER_PUBLIC_KEY" > $CONF_PATH
-echo "AllowedIPs = $WG_ALLOWED_IPS" > $CONF_PATH
-echo "EndPoint = $WG_ENDPOINT" > $CONF_PATH
+#echo "$interface" > $CONF_PATH
+echo "$interface" | sudo tee -a "$CONF_PATH" > /dev/null
 
+
+peer="[Peer]
+PublicKey = $server_public_key
+AllowedIPs = $WG_ALLOWED_IPS
+EndPoint = $WG_ENDPOINT"
+
+#echo "$peer" > $CONF_PATH
+echo "$peer" | sudo tee -a "$CONF_PATH" > /dev/null
