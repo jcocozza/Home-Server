@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# This will connect a peer to the wireguard server.
-# Run it on the peer machine
+# This will start wireguard on the machine it is run on.
+#
 # Environment variables:
 #   WG_NAME
 

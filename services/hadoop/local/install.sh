@@ -9,7 +9,7 @@
 
 java_folder="java-11-openjdk-arm64"
 
-wget https://dlcdn.apache.org/hadoop/common/$HADOOP_VERSION/$HADOOP_VERSION.tar.gz
+curl -LO https://dlcdn.apache.org/hadoop/common/$HADOOP_VERSION/$HADOOP_VERSION.tar.gz
 tar xzf $HADOOP_VERSION.tar.gz
 
 mv $HADOOP_VERSION hadoop

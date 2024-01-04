@@ -78,7 +78,7 @@ ssh -t "$HADOOP_USERNAME@$HADOOP_MASTER_IP" "echo '$config' >> /home/$HADOOP_USE
 echo "installing hadoop for master $HADOOP_MASTER_IP..."
 scp services/hadoop/local/install.sh "$HADOOP_USERNAME@$HADOOP_MASTER_IP:/tmp/"
 ssh -t "$HADOOP_USERNAME@$HADOOP_MASTER_IP" '
-        sudo apt-get update;
+        sudo apt update;
         sudo apt install -y openjdk-11-jdk;
         source exports.sh;
         bash -s < /tmp/install.sh;
@@ -92,7 +92,7 @@ for ipaddr in "${machines[@]}"; do
 
         echo "expanding hadoop on $ipaddr..."
         ssh -t "$HADOOP_USERNAME@$ipaddr" '
-            sudo apt-get update;
+            sudo apt update;
             sudo apt install -y openjdk-11-jdk;
             source exports.sh;
             tar xzf '"$HADOOP_VERSION"'.tar.gz;

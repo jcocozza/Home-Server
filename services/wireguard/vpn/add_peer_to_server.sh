@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This script will add a peer to a wireguard server - run it on the machine hosting the wireguard server
+# This script will add a peer to a wireguard server - run it on the peer machine
 #
 # Environment Variables:
 #   WIREGUARD_PATH

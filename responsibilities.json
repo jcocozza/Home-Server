@@ -1,48 +1,60 @@
 {
     "responsibility-name-template": {
-        "description": "This is the description of the responsibility"
+        "description": "This is the description of the responsibility",
+        "distributed": true
     },
 
     "wg-server": {
-        "description": "Hosts a wireguard server"
+        "description": "Hosts a wireguard server",
+        "distributed": true
     },
     "wg-peer": {
-        "description": "Is a peer on the wireguard server"
+        "description": "Is a peer on the wireguard server",
+        "distributed": true
     },
     "wg-monitor": {
-        "description": "Runs the wg-monitor program: https://github.com/jcocozza/wg-monitor"
+        "description": "Runs the wg-monitor program: https://github.com/jcocozza/wg-monitor",
+        "distributed": true
     },
 
 
     "speedtest": {
-        "description": "Runs a speedtest https://github.com/jcocozza/go_speedtest"
+        "description": "Runs a speedtest https://github.com/jcocozza/go_speedtest",
+        "distributed": false
     },
 
 
     "mysql-db": {
-        "description": "Hosts a mysql database"
+        "description": "Hosts a mysql database",
+        "distributed": false
     },
 
     "file-server": {
-        "description":"Runs a samba file server"
+        "description":"Runs a samba file server",
+        "distributed": false
     },
 
     "budget": {
-        "description": "Runs the actual server for budgeting"
+        "description": "Runs the actual server for budgeting",
+        "distributed": false
     },
 
     "hadoop-name-node": {
-        "description": "Is a hadoop name-node"
+        "description": "Is a hadoop name-node",
+        "distributed": true
     },
     "hadoop-data-node": {
-        "description": "Is a hadoop data-node"
+        "description": "Is a hadoop data-node",
+        "distributed": true
     },
 
 
-    "minecraft-java": {
-        "description": "Runs a java minecraft server"
+    "minecraft/java": {
+        "description": "Runs a java minecraft server",
+        "distributed": false
     },
-    "minecraft-bedrock": {
-        "description": "Runs a bedrock minecraft server"
+    "minecraft/bedrock": {
+        "description": "Runs a bedrock minecraft server",
+        "distributed": false
     }
 }

@@ -11,15 +11,15 @@ if [[ "$system" == "Darwin" ]]; then
     brew tap teamookla/speedtest
     brew update
     brew install speedtest --force
-
-    curl -LO https://github.com/jcocozza/go_speedtest/releases/download/$go_speedtest_version/go_speedtest_$system_$architecture
-    chmod +x go_speedtest_$system_$architecture
 elif [[ "$system" == "Linux" ]]; then
     # Install ookla
     curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
-    sudo apt-get install speedtest
-
-    # Install go_speedtest tool
-    curl -LO https://github.com/jcocozza/go_speedtest/releases/download/$go_speedtest_version/go_speedtest_$system
-    chmod +x go_speedtest_$system
+    sudo apt update
+    sudo apt install speedtest
 fi
+
+# Install go_speedtest tool
+echo "curl request: https://github.com/jcocozza/go_speedtest/releases/download/$go_speedtest_version/go_speedtest_${system}_${architecture}"
+curl -LO https://github.com/jcocozza/go_speedtest/releases/download/$go_speedtest_version/go_speedtest_${system}_${architecture}
+
+chmod +x go_speedtest_${system}_${architecture}

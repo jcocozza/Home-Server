@@ -11,6 +11,8 @@ def read_server_config() -> dict:
     return data
 
 if __name__ == "__main__":
+
+    # this reads the config file and then returns the vpn-ip-address associated with a given machine ip-address
     ipaddr = sys.argv[1]
     data = read_server_config()
     vpn_ip_lst = [machine for machine in data['machines'] if ipaddr == machine['ip-address']]

@@ -1,24 +1,75 @@
 {
     "HOME_SERVER_DIR" : "~/HOME-SERVER-SERVICES",
 
-    "MYSQL_ROOT_PASSWORD" : "p1",
+    "HADOOP_PARAMS" : {
+        "HADOOP_USERNAME" : "hadoop",
+        "HADOOP_USER_PASSWORD" : "hadoop",
+        "HADOOP_VERSION" : "hadoop-3.3.6",
+        "HADOOP_LOCATION" : "/opt/hadoop"
+    },
 
-    "WIREGUARD_PATH" : "p2",
-    "WG_SERVER_PUBLIC_KEY" : "p3",
-    "WG_ENDPOINT": "p4",
-    "WG_ALLOWED_IPS": "p5",
-    "WG_NAME": "p6",
-    "WG_LISTENPORT": "p7",
+    "MYSQL_ROOT_PASSWORD" : "mysql_root_password",
 
-    "machines": [
+    "WIREGUARD_PARAMS" : {
+        "WIREGUARD_PATH" : "/etc/wireguard",
+        "WG_ENDPOINT": "192.168.64.4:51820",
+        "WG_ALLOWED_IPS": "0.0.0.0/0,::/0",
+        "WG_NAME": "wg0",
+        "WG_LISTENPORT": "51820"
+    },
+
+
+    "BASE_USER": "ubuntu",
+    "BASE_USER_PASSWORD": "password",
+
+    "machines" : [
         {
-            "name": "machine-template",
-            "ip-address": "ip of the machine on its network",
-            "vpn-ip-address": "ip of machine on the vpn network",
+            "name": "machine1",
+            "ip-address": "192.168.64.4",
+            "vpn-ip-address": "10.5.5.1",
             "responsibilities": [
-                "responsibility1",
-                "responsibility2",
-                "responsibility3"
+                "wg-server",
+                "wg-monitor"
+            ]
+        },
+
+        {
+            "name": "vm1",
+            "ip-address": "192.168.64.5",
+            "vpn-ip-address": "10.5.5.2",
+            "responsibilities": [
+                "hadoop-data-node",
+                "wg-peer",
+                "budget"
+            ]
+        },
+        {
+            "name": "vm2",
+            "ip-address": "192.168.64.6",
+            "vpn-ip-address": "10.5.5.3",
+            "responsibilities": [
+                "hadoop-name-node",
+                "wg-peer",
+                "speedtest"
+            ]
+        },
+        {
+            "name": "vm3",
+            "ip-address": "192.168.64.7",
+            "vpn-ip-address": "10.5.5.4",
+            "responsibilities": [
+                "hadoop-data-node",
+                "wg-peer",
+                "file-server"
+            ]
+        },
+        {
+            "name": "vm4",
+            "ip-address": "192.168.64.8",
+            "vpn-ip-address": "10.5.5.5",
+            "responsibilities": [
+                "hadoop-data-node",
+                "wg-peer"
             ]
         }
     ]

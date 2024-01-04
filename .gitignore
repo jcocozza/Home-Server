@@ -1,4 +1,4 @@
-servers-config.json
-servers-config-home.json
+servers-config*
 
 .vscode
+__pycache__

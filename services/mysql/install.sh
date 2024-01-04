@@ -3,7 +3,7 @@
 # This script installs mysql non-interactively
 
 # Install MySQL Server
-sudo apt-get update
+sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 
 # Set MySQL root password non-interactively

@@ -16,10 +16,18 @@ npm install --global yarn
 # install actual
 git clone https://github.com/actualbudget/actual-server.git
 cd actual-server
-yarn install
+
+
+COUNTRY="US"
+STATE="."
+LOCALITY="."
+ORGANIZATION="."
+ORG_UNIT="."
+COMMON_NAME="."
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout selfhost.key -out selfhost.crt -subj "/C=$COUNTRY/ST=$STATE/L=$LOCALITY/O=$ORGANIZATION/OU=$ORG_UNIT/CN=$COMMON_NAME"
 
 # to be able to see the server on other lan machines we need to set up https
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout selfhost.key -out selfhost.crt
 json_content='{
   "https": {
     "key": "selfhost.key",
@@ -28,3 +36,4 @@ json_content='{
 }'
 echo "$json_content" > config.json
 
+yarn install
